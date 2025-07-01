@@ -28,10 +28,19 @@
                 <input type="password" name="password" class="form-control" required>
             </div>
             <button class="btn btn-primary w-100">Login</button>
+
             <div class="text-center mt-3">
                 <a href="{{ url('/register') }}">Don't have an account? Register</a>
             </div>
         </form>
+
+        <hr>
+
+        <div class="text-center mt-3">
+            <a href="{{ url('auth/google/redirect') }}" class="btn btn-outline-danger w-100">
+                <i class="fab fa-google me-2"></i> Login with Google
+            </a>
+        </div>
     </div>
 </div>
 @endsection
