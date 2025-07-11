@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
-Route::get('/',function (){
+use App\Http\Controllers\RoleController;
+Route::get('/',action: function (){
     return redirect()->route('dashboard');
 });
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -17,6 +18,9 @@ Route::get('/refresh-token', [AuthController::class, 'refresh'])->name('refresh'
 Route::middleware(['web'])->group(function () {
     Route::get('auth/{provider}/redirect', [GoogleController::class, 'create'])->where('provider', 'google|microsoft');
     Route::get('auth/{provider}/callback', [GoogleController::class, 'store'])->where('provider', 'google|microsoft');
+    Route::get('/users', [RoleController::class, 'index'])->name('users.index');
+    Route::post('/assign-role', [RoleController::class, 'assignRole'])->name('users.assignRole');
+
 });
 
 Route::get('/dashboard', function () {
